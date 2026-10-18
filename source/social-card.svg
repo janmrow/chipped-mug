@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+<title id="title">chipped-mug — Understand the change.</title>
+<desc id="desc">A terracotta ceramic mug with one small chip in its front rim and its handle on the right.</desc>
+<style>@font-face {font-family: "Libre Baskerville"; src: url("font.ttf") format("truetype"); font-weight: 400 700;}</style>
+<rect width="100%" height="100%" fill="#F4EDDF"/>
+<image id="mug" x="730" y="70" width="510" height="510" xlink:href="illustration.png"/>
+<text id="name" x="78" y="318" font-family="Libre Baskerville" font-size="83" font-weight="700" style="font-kerning:none;font-variant-ligatures:none" fill="#3D3027">chipped-mug</text>
+<text id="tagline" x="82" y="400" font-family="Libre Baskerville" font-size="42" font-weight="600" style="font-kerning:none;font-variant-ligatures:none" fill="#3D3027">Understand the change.</text>
+</svg>
