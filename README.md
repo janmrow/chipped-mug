@@ -8,11 +8,11 @@ Think of the senior developer with the chipped company mug: “Okay. Here’s wh
 
 ## A change, explained
 
-A synthetic example from a saved-article app: four changed files become this explanation. The [full example and original response](examples/reading-room.md) are included.
+A synthetic example from a saved-article app: four changed files become this explanation, recorded using the skill from v1.0.0. The [full example and run details](examples/reading-room.md) are included.
 
-> This adds pinning to the saved-article library. Pinned articles now appear at the top and carry a “Pinned:” label. Each member has their own pins.
+> This change adds personal pins to the saved-article library. When the library is opened, pinned articles appear first and their labels begin with “Pinned: ”. Within both groups—pinned and unpinned—articles keep their original saved order.
 >
-> Previously, articles appeared in the order they were saved. That order is still kept within the pinned and unpinned groups. Unpinning an article leaves it saved and puts it back among the unpinned articles.
+> Pins belong to the signed-in member, so one person’s choices don’t affect anyone else’s library. Removing a pin returns the article to its normal place among unpinned articles. Pinning only affects articles already saved in that member’s library; it doesn’t add an article to the library.
 
 Give them the part the developer usually explains.
 

@@ -97,8 +97,36 @@ index b539070..c263435 100644
 
 ## Recorded explanation
 
-Recorded with skill v0.5. This unedited response is included as a historical example, not as output from the current release.
+One unedited response recorded using the skill from release v1.0.0:
 
-> This adds pinning to the saved-article library. Pinned articles now appear at the top and carry a “Pinned:” label. Each member has their own pins.
+| Run detail | Value |
+| --- | --- |
+| Date (UTC) | 2026-10-18 |
+| Agent | Codex CLI 0.163.0 |
+| Model | `gpt-6.1-sol`, reasoning effort `high` |
+| Skill release | `v1.0.0` |
+| Skill commit | `367d6a54724772f5f266541ad058cdf151a27af3` |
+| Before (`main`) | `154c65f02174f44b2d8bf87173697e5760ac1b57` |
+| After (`selected-change`) | `837c4ac9012cdeb596daa015c98a963f563ef72a` |
+| Comparison | `main...selected-change` |
+
+The before and after commits were created locally from the baseline and patch above. `SKILL.md` and `LICENSE` from the skill commit were placed in `.agents/skills/chipped-mug/` inside that repository, outside the compared commits. The agent started in a fresh session without the previous explanation in its context.
+
+From the example repository, run:
+
+```sh
+codex exec \
+  --sandbox read-only \
+  --model gpt-6.1-sol \
+  -c 'model_reasoning_effort="high"' \
+  --json \
+  --output-last-message ../response.md \
+  'Use $chipped-mug to explain main...selected-change.' \
+  < /dev/null > ../events.jsonl 2> ../stderr.log
+```
+
+An initial CLI start failed before agent execution because the filesystem was read-only. Retrying with permission for CLI session writes produced this first completed response; the agent sandbox remained read-only.
+
+> This change adds personal pins to the saved-article library. When the library is opened, pinned articles appear first and their labels begin with “Pinned: ”. Within both groups—pinned and unpinned—articles keep their original saved order.
 >
-> Previously, articles appeared in the order they were saved. That order is still kept within the pinned and unpinned groups. Unpinning an article leaves it saved and puts it back among the unpinned articles.
+> Pins belong to the signed-in member, so one person’s choices don’t affect anyone else’s library. Removing a pin returns the article to its normal place among unpinned articles. Pinning only affects articles already saved in that member’s library; it doesn’t add an article to the library.
