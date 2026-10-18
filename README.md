@@ -70,4 +70,4 @@ Try it on the PR you were about to ask someone to explain.
 
 ## License
 
-[MIT](LICENSE). The bundled Libre Baskerville font is licensed under the [SIL Open Font License 1.1](source/OFL.txt). Editable artwork and export notes are in [source/](source/README.md).
+[MIT](LICENSE). The bundled Libre Baskerville font is licensed under the [SIL Open Font License 1.1](assets/source/OFL.txt). Editable artwork and export notes are in [assets/source/](assets/source/README.md).
