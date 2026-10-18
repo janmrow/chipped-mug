@@ -1,18 +1,14 @@
 <img src="assets/hero.png" alt="chipped-mug — Understand the change. A terracotta mug with a chipped rim." width="960">
 
-An Agent Skill that explains what a code change actually does, in plain English. It uses the repository as context, for teammates who know the product but may never have opened the codebase.
+An [Agent Skill](SKILL.md) that explains code changes in plain English, using the repository as context.
+
+For manual testers and other teammates who know the product but may never have opened the codebase.
 
 Think of the senior developer with the chipped company mug: “Okay. Here’s what actually changed.”
 
 ## A change, explained
 
-After installation, ask your coding agent with the repository open:
-
-```text
-Use chipped-mug to explain main...selected-change.
-```
-
-Here is a synthetic saved-article example: four changed files become this explanation. This is an unedited historical v0.5 response, not a new v0.7 result. The [complete source and patch](examples/reading-room.md) are included.
+A synthetic example from a saved-article app: four changed files become this explanation. The [full example and original response](examples/reading-room.md) are included.
 
 > This adds pinning to the saved-article library. Pinned articles now appear at the top and carry a “Pinned:” label. Each member has their own pins.
 >
@@ -20,56 +16,55 @@ Here is a synthetic saved-article example: four changed files become this explan
 
 Give them the part the developer usually explains.
 
-## Not another PR reviewer
+## What to expect
 
-It explains what the change does. It does not judge the code, look for bugs, design tests, or compare the implementation with a ticket. Implemented conditions and fallback behavior still belong in the explanation. It does not modify the repository.
+The agent reads the selected change and the surrounding code it needs to understand it. It explains what changed, what happened before, and when the difference matters.
+
+It does not review the code, look for bugs, design tests, compare the implementation with a ticket, or modify the repository. Conditions and fallback behavior still belong in the explanation.
+
+It may read twenty files. You shouldn’t have to.
 
 ## Install and use
 
-You need a coding agent with Git and read/search access to the repository, including the compared revisions. A PR link also needs access to its base and head. There is no separate CLI or runtime.
+The skill is an instruction file for your coding agent. The agent needs Git and read access to the repository, including the versions being compared. It also needs access to any PR you link. There is no separate CLI or runtime.
 
 Clone this repository:
 
 ```sh
 git clone https://github.com/janmrow/chipped-mug.git
+cd chipped-mug
 ```
 
-Copy its `SKILL.md` into one of these locations, creating the `chipped-mug` directory if needed:
+Copy `SKILL.md` and `LICENSE` into the directory for your agent, creating it if needed:
 
-| Local agent | Personal installation |
+| Agent | Install directory |
 | --- | --- |
-| [Codex CLI / IDE](https://learn.chatgpt.com/docs/build-skills) | `~/.agents/skills/chipped-mug/SKILL.md` |
-| [Claude Code](https://code.claude.com/docs/en/skills) | `~/.claude/skills/chipped-mug/SKILL.md` |
-| [OpenCode](https://opencode.ai/docs/skills/) | `~/.config/opencode/skills/chipped-mug/SKILL.md` |
+| [Codex CLI / IDE](https://learn.chatgpt.com/docs/build-skills) | `~/.agents/skills/chipped-mug/` |
+| [Claude Code](https://code.claude.com/docs/en/skills) | `~/.claude/skills/chipped-mug/` |
+| [OpenCode](https://opencode.ai/docs/skills/) | `~/.config/opencode/skills/chipped-mug/` |
 
-For example, to install for Codex from the directory where you cloned this repository:
+For example, from inside the cloned repository, install for Codex:
 
 ```sh
 mkdir -p ~/.agents/skills/chipped-mug
-cp chipped-mug/SKILL.md ~/.agents/skills/chipped-mug/SKILL.md
+cp SKILL.md LICENSE ~/.agents/skills/chipped-mug/
 ```
 
-Start a new session in the repository you want explained. In Codex, select the skill with `$chipped-mug` or `/skills`; in Claude Code, use `/chipped-mug`. In OpenCode, ask the agent to load `chipped-mug` with its skill tool and explain the selected change.
+Start a new session in the repository the PR belongs to. In Codex, select the skill with `$chipped-mug` or `/skills`; in Claude Code, use `/chipped-mug`. In OpenCode, ask the agent to use `chipped-mug`.
 
-Point it at a PR, branch, commit, revision range, or diff. For a branch, naming the base makes the selection clear:
+Then ask:
 
 ```text
-Use chipped-mug to explain the feature branch against main.
+Use chipped-mug to explain this pull request: <PR URL>
 ```
 
-The diff defines the scope. Without repository access or the needed revisions, the agent can only give a limited explanation or ask for missing context.
+Replace `<PR URL>` with the pull request you want explained. You can also point it at a branch, commit, revision range, or diff; for a branch, name the base you want to compare against.
+
+Without repository access or the needed versions, the agent can only give a limited explanation or ask for missing context.
+
+To update, run `git pull --ff-only` inside the cloned repository and copy `SKILL.md` and `LICENSE` into your agent’s directory again, then start a new session.
 
 These are local installation paths; remote and managed environments may use different routes.
-
-## How it works
-
-Diff is the anchor. The repo is the context. Understanding is the output.
-
-The agent fixes the before and after revisions, reads the selected change, follows the repository context needed to understand it, and explains the meaningful threads in product and system language. Exact technical names appear only when their identity matters.
-
-It may read twenty files. You shouldn’t have to.
-
-The instructions live in [SKILL.md](SKILL.md).
 
 Try it on the PR you were about to ask someone to explain.
 

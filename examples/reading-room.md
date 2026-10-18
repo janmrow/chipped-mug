@@ -1,6 +1,6 @@
 # Reading Room — synthetic example
 
-This small fixture demonstrates the explanation in the README. It is not a production PR. Store state lives in memory; no restart persistence is implied.
+This synthetic saved-article app is the source of the README example. Saved articles and pins are kept in memory.
 
 Create the four baseline files below in an empty Git repository, commit them on `main`, then create `selected-change` and apply the patch. Ask the agent to explain `main...selected-change`.
 
@@ -95,12 +95,10 @@ index b539070..c263435 100644
 +    return [("Pinned: " if row["pinned"] else "") + row["article"] for row in rows]
 ```
 
-## Observed explanation
+## Recorded explanation
 
-This historical, unedited response comes from one v0.5 execution recorded in the original demo. It is not a v0.7 execution or a new validation result:
+Recorded with skill v0.5. This unedited response is included as a historical example, not as output from the current release.
 
 > This adds pinning to the saved-article library. Pinned articles now appear at the top and carry a “Pinned:” label. Each member has their own pins.
 >
 > Previously, articles appeared in the order they were saved. That order is still kept within the pinned and unpinned groups. Unpinning an article leaves it saved and puts it back among the unpinned articles.
-
-Exact wording varies. The important result is pinning, member-specific state, retained order within both groups, and the fact that unpinning does not remove a saved article.
